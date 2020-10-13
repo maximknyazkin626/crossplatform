@@ -2,6 +2,8 @@
 //
 
 #include <iostream>
+#include <fstream>
+#include <string>
 using namespace std;
 
 bool check_value(int x) {
@@ -80,10 +82,40 @@ void PrintKs(ks new_ks)
     cout << "Эффективность: " << new_ks.effect << endl;
 }
 
+
+void change_status(bool& status) {
+    status = !status;
+}
+
+void save_to_filepi(pipe pi) {
+    ofstream fout;
+    fout.open("DataTruba.txt", ios::out);
+    if (fout.is_open()) {
+        fout << pi.id << endl << pi.diametr << endl << pi.dlina << endl << pi.remont;
+        fout.close();
+    }
+}
+
+void save_to_fileKS(ks kompresor) {
+    ofstream fout;
+    fout.open("DataCS.txt", ios::out);
+    if (fout.is_open()) {
+        fout << kompresor.id << endl << kompresor.name << endl << kompresor.ceh << endl << kompresor.ceh_inwork << endl << kompresor.effect;
+        fout.close();
+    }
+}
+
+void PrintMenu() {
+    cout << "1. Создать трубу" << endl;
+    cout << "2. Создать компрессорную станцию" << endl;
+}
+
+
+
 int main()
 {
     setlocale(LC_ALL, "Russian");
-    string s;
+   // string s;
     ///cout << "Type your name,please" << endl;
     //cin >> s;
     //cout << "Hello  " << s << endl;
@@ -92,7 +124,22 @@ int main()
     PrintPipe(pi);
     ks kompresor = InputKs();
     PrintKs(kompresor);
+    int i;
+    while (1) {
+        cout << "Выберите действие:" << endl;
+        PrintMenu();
+        cin >> i;
+        switch (i)
+        {
+        case 1:
+            pi = InputPipe();
+            break;
+        case 2:
+            kompresor = InputKs();
+            break;
 
+        }
+    }
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
