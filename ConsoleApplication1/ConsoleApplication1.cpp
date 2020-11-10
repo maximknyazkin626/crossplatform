@@ -12,57 +12,55 @@ bool check_value(int x) {
 bool check_value(double x) {
     return x > 0 ? true : false;
 }
-struct pipe {
-    string id;
-    double dlina;
-    double diametr;
-    bool remont;
+
+struct pipe { //создаем структуру трубы
+    int id;   // id
+    double dlina;  // длина
+    double diametr; // диаметр 
+    bool repair;  // статус в ремонте 
 };
 
-struct ks {
-    string id;
-    string name;
-    int ceh;
-    int ceh_inwork;
-    double effect;
+struct ks { // создаем структуру кс
+    int id; // id
+    string name;  // имя 
+    int ceh; // кол-во цехов
+    int ceh_inwork; // кол-во цехов в работе
+    double effect; // эффективность
 };
 
-pipe InputPipe ()
+pipe InputPipe () // создаем трубу
 {
-    pipe p;
-    cout << "Введите диаметр: ";
-    cin >> p.diametr;
+    pipe p; // переменная отвечающая за новую трубу
+    cout << "Введите диаметр: "; 
+    cin >> p.diametr;  // ввод диаметра
     cin.clear();
     cin.ignore(10000, '\n');
-    cout << "Введит длину: " ;
+    cout << "Введите длину: " ;  // ввод длины 
     cin >> p.dlina;
-    p.remont = false;
-    p.id = -1;
-
+    p.repair = false; // статус в ремонте
+    p.id = 0;  // id
 
     return p;
 }
 
-ks InputKs()
+ks InputKs() // создаем кс
 {
-    ks new_ks;
+    ks new_ks; // переменная отвечающая за новую кс
     cout << "Введите имя: " << endl;
-    cin >> new_ks.name;
+    cin >> new_ks.name; // ввод имени
     cin.clear();
     cin.ignore(10000, '\n');
-    cout << "Введите кол-во цехов: " << endl;
-    cin >> new_ks.ceh;
+    cout << "Введите кол-во цехов: " << endl; 
+    cin >> new_ks.ceh; // ввод кол-ва цехов
     cin.clear();
     cin.ignore(10000, '\n');
-    cout << "Введите кол-во рабочих цехов: " << endl;
+    cout << "Введите кол-во рабочих цехов: " << endl; // ввод кол-ва рабочих цехов
     cin >> new_ks.ceh_inwork;
     cin.clear();
     cin.ignore(10000, '\n');
     cout << "Введите эффективность: " << endl;
-    cin >> new_ks.effect;
-    new_ks.id = -1;
-
-    
+    cin >>new_ks.effect;
+    new_ks.id = 0;
 
     return new_ks;
 }
@@ -91,7 +89,7 @@ void save_to_filepi(pipe pi) {
     ofstream fout;
     fout.open("DataTruba.txt", ios::out);
     if (fout.is_open()) {
-        fout << pi.id << endl << pi.diametr << endl << pi.dlina << endl << pi.remont;
+        fout << pi.id << endl << pi.diametr << endl << pi.dlina << endl << pi.repair;
         fout.close();
     }
 }
