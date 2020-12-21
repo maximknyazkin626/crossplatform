@@ -57,7 +57,7 @@ ks InputKs() // создаем кс
    // bool IsKs = true;
     cout << "Введите имя: " << endl;
     cin >> new_ks.name ; // ввод имени
-    cin.clear();
+    cin.clear(); //проверка на ошибку предыдущего ввода
     cout << "Введите кол-во цехов: " << endl; 
     new_ks.ceh = GetCorrectNumber(0, 10000); // ввод кол-ва цехов
     cin.clear();
@@ -200,8 +200,8 @@ int main()
     pipe p;
     ks new_ks; 
     int i;
-    bool InPipe = false;
-    bool IsKs = false;
+    //bool InPipe = false;
+    //bool IsKs = false;
     while (1) {
         cout << "Выберите действие:" << endl;
         Menu();
@@ -243,6 +243,8 @@ int main()
             }
             break;
         case 5:
+            ReadFilePipe;
+            ReadFileKs;
             ReadFromFilePKs(p, new_ks);
             break;
         case 6:
