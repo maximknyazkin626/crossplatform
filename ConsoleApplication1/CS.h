@@ -6,36 +6,21 @@
 
 class CS
 {
-	std::string name;
-	int id;
-	int work;
-	int inwork;
-	double effect;
-
-	static int Maxid;
-
+	std::string Name;
+	int ShopsCount;
+	int WorkingShopsCount;
+	float Efficiency;
 public:
-
-	std::string GetName() const;
-
-	static int GetMaxid();
-
-	int Getid() const;
-
-	int GetInWork() const;
-
-	int GetWork() const;
-
-	double GetEffect() const;
-
-	friend std::ostream& operator << (std::ostream& out, const CS& c);
-	friend std::istream& operator >> (std::istream& in, CS& c);
-	friend std::ofstream& operator << (std::ofstream& out, const CS& c);
-	friend std::ifstream& operator >> (std::ifstream& in, CS& c);
-
-	void stop_work();
-	void continue_work();
-
+	static int csMaxId;
+	friend std::ostream& operator << (std::ostream& out, const CS& cs);
+	friend std::istream& operator >> (std::istream& in, CS& cs);
 	CS();
+	CS(std::ifstream& fin);
+	std::string GetName() const;
+	float GetPercentUnusedShops() const;
+	void RecountShopsCount();
+	void RecountWorkingShopsCount();
+	void SaveToFile(std::ofstream& fout);
 
 };
+
